@@ -5,11 +5,13 @@ import wand.image
 import re
 import math
 import json
+import argparse
 
 def compile(entry):
     entry_file = os.path.basename(entry)
     entry_directory = os.path.dirname(entry)
-    directory = '/tmp'
+    directory = os.path.join(entry_directory, 'tmp')
+    os.system("mkdir -p {}".format(directory))
     retcode = subprocess.Popen(['pdflatex', '-interaction=nonstopmode', '-8bit', '-output-directory={}'.format(os.path.abspath(directory)), '-jobname=output', entry_file], stdout=None, stderr=None, cwd=entry_directory).wait()
     if retcode!=0:
         raise subprocess.CalledProcessError(retcode, 'pdflatex')
@@ -93,7 +95,16 @@ def compile(entry):
         f.write('sets.push({})'.format(json.dumps(obj)))
 
 if __name__ == '__main__':
-    for s in os.listdir('latex/sets'):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--sets", type=str, default='')
+    args = parser.parse_args()
+
+    if args.sets:
+        sets = args.sets.split(' ')
+    else:
+        sets = os.listdir('latex/sets')
+
+    for s in sets:
         try:
             int(s)
             path = os.path.abspath(os.path.join('latex/sets', s, 'set{}.tex'.format(s)))
