@@ -194,7 +194,7 @@ $\Prob[A \cap B \cap C]$ =
 \item {\bf Balls and Bins.} Suppose you have $m$ labeled balls $a_1, \ldots, a_m$ that you have thrown one by one, uniformly at random into $n$ labeled bins $b_1, \ldots, b_n$. For each of the probabilities below, select all answers that apply from the list of choices.
 \begin{enumerate}
 \item What is the probability that $b_j$ contains $a_i$? Select all answers that apply.
-\begin{Choices}
+\begin{Multi}
 When $a_i$ is being thrown, what is the probability that it lands in $b_j$? How many choices are there?
 \begin{enumerate}
 \FalseChoice\item $\left(1 -\frac{1}{n}\right)^m$
@@ -202,10 +202,10 @@ When $a_i$ is being thrown, what is the probability that it lands in $b_j$? How 
 \FalseChoice\item $\frac{1}{m}$
 \FalseChoice\item $\frac{m}{n}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 %-----------------------------------
 \item What is the probability that $b_j$ is empty? Select all answers that apply.
-\begin{Choices}
+\begin{Multi}
 For each ball, what is the probability that it does not end up in $b_j$? Are these events independent?
 \begin{enumerate}
 \TrueChoice\item $\left(1 -\frac{1}{n}\right)^m$
@@ -213,10 +213,10 @@ For each ball, what is the probability that it does not end up in $b_j$? Are the
 \FalseChoice\item $\frac{1}{m!}$
 \FalseChoice\item $\frac{1}{n!}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 %-----------------------------------
 \item What is the probability that $b_j$ contains all of the balls? Select all answers that apply.
-\begin{Choices}
+\begin{Multi}
 For each ball, what is the probability that it ends up in $b_j$? Are these events independent?
 \begin{enumerate}
 \FalseChoice\item $\left(1-\frac{1}{n}\right)^m$
@@ -224,10 +224,10 @@ For each ball, what is the probability that it ends up in $b_j$? Are these event
 \TrueChoice\item $\binom{m}{m}\cdot\left(\frac{1}{n}\right)^m$
 \FalseChoice\item $\frac{1}{m!}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 %-----------------------------------
 \item What is the probability that $b_j$ contains exactly $k$ balls? Select all answers that apply.
-\begin{Choices}
+\begin{Multi}
 For each ball, what is the probability that it ends up in $b_j$? Are these events independent? Does order matter?
 \begin{enumerate}
 \FalseChoice\item $\binom{m}{k}\cdot\left(\frac{1}{n}\right)^{m-k}\cdot \left(1-\frac{1}{n}\right)^{k}$
@@ -235,18 +235,18 @@ For each ball, what is the probability that it ends up in $b_j$? Are these event
 \TrueChoice\item $\binom{m}{k}\cdot\left(\frac{1}{n}\right)^{k}\cdot \left(1-\frac{1}{n}\right)^{m-k}$
 \FalseChoice\item $\left(\frac{1}{n}\right)^{k}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 %-----------------------------------
 \item What is the probability that $b_j$ contains at most $k$ balls?
-\begin{Choices}
+\begin{Multi}
 What is the probability that $b_j$ contains exactly $i$ balls? Review the probability of a union of disjoint events in note 10.
 \begin{enumerate}
 \FalseChoice\item $\sum_{i = 0}^{k}\binom{m}{i}\cdot\left(\frac{1}{n}\right)^{m-i}\cdot \left(1-\frac{1}{n}\right)^{i}$
 \TrueChoice\item $\sum_{i = 0}^{k} \binom{m}{i}\cdot\left(\frac{1}{n}\right)^{i}\cdot \left(1-\frac{1}{n}\right)^{m-i}$
 \TrueChoice\item $1 - \sum_{i = k+1}^{m}\binom{m}{i}\cdot\left(\frac{1}{n}\right)^{i}\cdot \left(1-\frac{1}{n}\right)^{m-i}$
-\TrueChoice\item $1 - \sum_{i = 0}^{m-k}\binom{m}{i}\cdot\left(\frac{1}{n}\right)^{m-i}\cdot \left(1-\frac{1}{n}\right)^{i}$
+\TrueChoice\item $1 - \sum_{i = 0}^{m-k-1}\binom{m}{i}\cdot\left(\frac{1}{n}\right)^{m-i}\cdot \left(1-\frac{1}{n}\right)^{i}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 \end{enumerate}
 %-----------------------------------
 \item {\bf Processes, servers and overloading.} I have $M$ processes (jobs) and 
@@ -255,7 +255,7 @@ What is the probability that $b_j$ contains exactly $i$ balls? Review the probab
     servers being equally likely. We say that a server is overloaded if it is 
     assigned greater than or equal to $K$ jobs, where $K \leq M$. What is the 
     probability that the first server is overloaded?
-\begin{Choices}
+\begin{Multi}
 \begin{enumerate}
     \FalseChoice\item $\sum_{i=0}^{M-K-1} \dbinom{M}{K+i} \frac{(N-1)^{M-K-i}}{N^{M}}$
     \FalseChoice\item $\sum_{i=0}^{N-K} \dbinom{N}{K+i} \frac{(M-1)^{N-K-i}}{M^{N}}$
@@ -263,7 +263,7 @@ What is the probability that $b_j$ contains exactly $i$ balls? Review the probab
     \FalseChoice\item $\dbinom{M}{K} \frac{(N-1)^{M-K}}{N^{M}}$
     \FalseChoice\item $\left(\frac{N-1}{N}\right)^{M-K}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 %-----------------------------------
 \item {\bf Jobs and servers, without immediate repetition.} I have $M\geq 2$ 
     jobs and $N \geq M$ servers to assign the jobs to.
@@ -280,7 +280,7 @@ What is the probability that $b_j$ contains exactly $i$ balls? Review the probab
 
     What is the probability that each of the $M$ jobs goes to a different 
     server?
-\begin{Choices}
+\begin{Multi}
 \begin{enumerate}
     \FalseChoice\item $\sum_{i=0}^{N-M}\frac{(N-i-2)!}{(N-M-i)! (N-1)^{M-2}}$
     \FalseChoice\item $\frac{(M-2)!}{(N-M)! (M-2)^{N-1}}$
@@ -288,7 +288,7 @@ What is the probability that $b_j$ contains exactly $i$ balls? Review the probab
     \FalseChoice\item $\frac{(N-2)!}{(N-M)! (N-2)^{M-3}}$
     \TrueChoice\item $\frac{(N-2)!}{(N-M)! (N-1)^{M-2}}$
 \end{enumerate}
-\end{Choices}
+\end{Multi}
 %-----------------------------------
 \item {\bf Bounding overload probabilities.} I have a load balancing set up 
     with $N$ servers, where I can guarantee that the probability of the $i^{th}$ 
