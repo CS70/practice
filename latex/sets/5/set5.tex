@@ -456,6 +456,248 @@ This gives us $a_3\, =\, 3$, $a_2\, =\, -2$, and $a_1\, =\, -3$
 
 \end{enumerate}
 
+\item In this question, we want to demonstrate the intuition behind the Lagrange interpolation technique.
+
+Let $p(x)$ be a polynomial of degree 2 over GF(7). Suppose $p(1) = 2$, $p(2) = 1$ and $p(3) = 4$. We would like to find the coefficient representation for $p$.
+\begin{enumerate}
+\item Suppose we had polynomials, $p_1$, $p_2$, and $p_3$, of degree $2$  satisfying the following properties:
+\begin{align*}
+    p_1(1) = 1, \;\;p_1(2) = 0,\;\;p_1(3)=0\\
+    p_2(1) = 0, \;\;p_2(2) = 1,\;\;p_2(3)=0\\
+    p_3(1) = 0, \;\;p_3(2) = 0,\;\;p_3(3)=1\\
+\end{align*}
+We want to express $p$ in terms of $p_1,\;p_2$, and $p_3$ as $p = A \cdot p_1 + B \cdot p_2 + C \cdot p_3$. Compute $A, B, C$.
+\begin{Freeform}{2}
+$A=$
+\end{Freeform}
+\begin{Freeform}{1}
+$B=$
+\end{Freeform}
+\begin{Freeform}{4}
+$C=$
+\end{Freeform}
+\item Now let's actually find the coefficient representation of $p_1$. To start off with, what for must $p_1$ for some constant $c \in GF(7)$?
+\begin{Choices}
+\begin{itemize}
+\FalseChoice \item $c(x-x_1)(x-x_2)$
+\TrueChoice \item $c(x-x_2)(x-x_3)$
+\FalseChoice \item $c(x-x_1)(x-x_3)$
+\end{itemize}
+\end{Choices}
+
+\item What is the value of $c$?
+\begin{Freeform}{4}
+$c = $
+\Solution We must multiply $(x-2)(x-3)$ by a constant factor that will make it equalled to $1$ at $x=1$. Thus we must take the multiplicative inverse of $(1-2)(1-3) = 2 \mod 7$. This turns out to be $4$. Thus, $c = 4$, and expanding shows that the coefficient representation of $p_1$ is $4x^2+x+3$.
+\end{Freeform}
+
+\item What are $a_1, b_1, c_1$ such that $p_1 = a_1x^2 + b_1x + c_1$?
+\begin{Freeform}{4}
+$a_1=$
+\end{Freeform}
+\begin{Freeform}{1}
+$b_1=$
+\end{Freeform}
+\begin{Freeform}{3}
+$c_1=$
+\end{Freeform}
+
+\item Now find $p_2 = a_2x^2 + b_2x + c_2$ and $p_3 = a_3x^2 + b_3x + c_3$ using similar method.
+\begin{Freeform}{6}
+$a_2=$
+\end{Freeform}
+\begin{Freeform}{4}
+$b_2=$
+\end{Freeform}
+\begin{Freeform}{4}
+$c_2=$
+\end{Freeform}
+
+\begin{Freeform}{4}
+$a_3=$
+\end{Freeform}
+\begin{Freeform}{2}
+$b_3=$
+\end{Freeform}
+\begin{Freeform}{1}
+$c_3=$
+\end{Freeform}
+
+\item Using what we've done so far, find $a, b, c$ such that $p = ax^2 + bx + c$.
+\begin{Freeform}{2}
+$a=$
+\end{Freeform}
+\begin{Freeform}{0}
+$b=$
+\end{Freeform}
+\begin{Freeform}{0}
+$c=$
+\end{Freeform}
+\end{enumerate}
+
+\item We've learned in class that there is a bijection between the coefficient representation and the value representation of a polynomial.
+In this problem, we will find the transformation matrices of the bijection.
+Consider a polynomial of the form $f(x) = ax^2+bx +c$ for $a,b,c\in GF(7)$.
+Define the coefficient representation of $f$ as $[a, b, c]^T$. Define the value representation of $f$ as $[f(1), f(2), f(3)]^T$.
+\begin{enumerate}
+\item What is the coefficient representation of $x^2$, $x$ and $1$ respectively?
+  Find $a, b, c$ such that the coordinate representation of $x^2$ is $[a, b, c]^T$.
+ \begin{Freeform}{1}
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{0}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{0}
+  $c = $
+ \end{Freeform}
+    Find $a, b, c$ such that the coordinate representation of $x$ is $[a, b, c]^T$.
+ \begin{Freeform}{0}
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{1}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{0}
+  $c = $
+ \end{Freeform}
+    Find $a, b, c$ such that the coordinate representation of $1$ is $[a, b, c]^T$.
+ \begin{Freeform}{0}
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{0}
+  $b = $
+ \end{Freeform}
+  \begin{Freeform}{1}
+  $c = $
+  \Solution $x^2 = 1 \cdot x^2 + 0 \cdot x + 0 \cdot 1$, so the coefficient representation of $x^2$ is $[1, 0, 0]^T$. It is the first basis vector.
+$x = 0 \cdot x^2 + 1 \cdot x + 0 \cdot 1$, so the coefficient representation of $x$ is $[0, 1, 0]^T$. It is the second basis vector.
+$1 = 0 \cdot x^2 + 0 \cdot x + 1 \cdot 1$, so the coefficient representation of $1$ is $[0, 0, 1]^T$. It is the third basis vector.
+ \end{Freeform}
+\item To change from coefficient representation to value representation, we need to find the transformation matrix $A$. Recall from linear algebra that the first column of $A$ is the vector that the first basis vector gets mapped to by the transformation. What is the first column of $A$?
+In other words, what is the value representation of the polynomial that corresponds to the first basis vector $[1, 0, 0]$ in coordinate representation?
+\begin{Freeform}{1}
+ Find $a, b, c$ such that the first column of $A$ is $[a, b, c]^T$. \\
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{4}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{2}
+  $c = $
+  \Solution From the previous part, $x^2$ is the polynomial that corresponds to the first basis vector in coefficient representation.
+  The value representation of $x^2$ is $[1^2, 2^2, 3^2]^T = [1, 4, 2]^T$ by definition.
+ \end{Freeform}
+\item  Using similar method, find the second and third column of $A$.
+\begin{Freeform}{1}
+ Find $a, b, c$ such that the second column of $A$ is $[a, b, c]^T$. \\
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{2}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{3}
+  $c = $
+ \end{Freeform}
+ \begin{Freeform}{1}
+ Find $a, b, c$ such that the third column of $A$ is $[a, b, c]^T$. \\
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{1}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{1}
+  $c = $
+ \end{Freeform}
+ \item Now we shift attention to the value representation. What is the polynomial $f_1$ that corresponds to the first basis vector $[1, 0, 0]^T$ in value representation?
+  Also find the polynomials $f_2, f_3$ that correspond to the second and third basis vector respectively. (Hint: $p_1, p_2, p_3$ we found in the last problem may be relevant here.)
+
+ \begin{Freeform}{4}
+  $f_1 = ax^2 + bx + c$ \\
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{1}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{3}
+  $c = $
+ \end{Freeform}
+  $f_2 = ax^2 + bx + c$
+ \begin{Freeform}{6}
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{4}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{4}
+  $c = $
+ \end{Freeform}
+  $f_3 = ax^2 + bx + c$
+ \begin{Freeform}{4}
+  $a = $
+ \end{Freeform}
+ \begin{Freeform}{2}
+  $b = $
+ \end{Freeform}
+ \begin{Freeform}{1}
+  $c = $
+  \Solution By definition of value representation, the polynomial $f_1$ that corresponds to the first basis vector $[1, 0, 0]^T$
+  in value representation satisfies $f_1(1) = 1$, $f_1(2) = 0$ and $f_1(3) = 0$. This exactly the basis polynomial $p_1$ we found
+  in Lagrange interpolation in the previous problem.
+
+  Similarly, the polynomials that correspond to the second and third basis vector are $p_2$ and $p_3$ respectively.
+ \end{Freeform}
+ \item Now we find the transformation matrix $B$ from value representation to coefficient representation.
+     Find $a, b, c, d, e, f, g, h, i$ such that
+
+\[
+ \begin{bmatrix}
+    a&d&g\\
+    b&e&h\\
+    c&f&i\\
+\end{bmatrix}
+\]
+ \begin{Freeform}{4}
+  $a=$
+ \end{Freeform}
+  \begin{Freeform}{1}
+  $b=$
+ \end{Freeform}
+  \begin{Freeform}{3}
+  $c=$
+ \end{Freeform}
+  \begin{Freeform}{6}
+  $d=$
+ \end{Freeform}
+  \begin{Freeform}{4}
+  $e=$
+ \end{Freeform}
+  \begin{Freeform}{4}
+  $f=$
+ \end{Freeform}
+  \begin{Freeform}{4}
+  $g=$
+ \end{Freeform}
+  \begin{Freeform}{2}
+  $h=$
+ \end{Freeform}
+  \begin{Freeform}{1}
+  $i=$
+   \Solution Similar to part (b), the $i$th column of $B$ is the coefficient representation of $f_i = p_i$.
+ \end{Freeform}
+
+ \item What is the relationship between matrix $B$, the transformation matrix from value representation to coefficient
+ representation, and matrix $A$, the transformation matrix from coefficient representation to value representation?
+ \begin{Choices}
+ \begin{itemize}
+ \FalseChoice \item $B = A^{-1}$
+ \TrueChoice \item $B = A$
+ \FalseChoice \item $B = 2A$
+ \end{itemize}
+ \end{Choices}
+
+\end{enumerate}
+
 \noindent{\bf Secret Sharing}.
 \item Suppose you are in charge of setting up a secret sharing scheme where you want to distribute $n = 5$ shares to $5$ people such that any $k = 3$ or more people can figure out the secret, but two or fewer cannot. Suppose we are working over $GF(7)$.
 \begin{enumerate}
