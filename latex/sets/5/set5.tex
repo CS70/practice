@@ -64,7 +64,60 @@
          % otherwise the current date is printed 
 
 \begin{document}
-\config{name}{RSA, Polynomial Interpolation, and Secret Sharing}
+\config{name}{CRT, RSA, Polynomial Interpolation, and Secret Sharing}
+\noindent{\bf CRT}.
+
+Consider the system:
+$$x = 2 \ (\bmod \ 3)$$
+$$x = 3 \ (\bmod \ 5)$$
+
+Let $v_1$ be a magic number that is equivalent to $1 \ (\bmod \ 3)$ and  $0 \ (\bmod \ 5)$.
+Let $v_2$ be a magic number that is equivalent to $0 \ (\bmod \ 3)$ and $1 \ (\bmod \ 5)$.
+
+\begin{enumerate}
+\item If we have some solution $x=y$, then $y+15$ is also a solution to the system.
+	\begin{Choices} 
+	\begin{itemize}
+	\TrueChoice\item True
+	\FalseChoice\item False
+	\Solution True, since adding $15$ is the same as adding $0 \ (\bmod \ 3)$ and $(\bmod \ 5)$ respectively. This means that when we look for solutions to this system, we should look for a solution in $(\bmod \ 15)$
+	\end{itemize}
+	\end{Choices}
+\item 
+	We think that we can write $x= a \cdot v_1 + b \cdot v_2$. What should $a$ and $b$ be?
+	\begin{enumerate}
+		\item \begin{Freeform}{2}
+			What is $a \ (\bmod \ 15)$?
+			\Hint What is $v_1 + v_2 \ (\bmod \ 3)$? What is $v_1 + v_2 \ (\bmod \ 5)$? The numbers $v_1$ and $v_2$ are often likened to basis vectors.
+			\Solution $x = 2 \cdot v_1+3 \cdot v_2$
+			\end{Freeform}
+		\item \begin{Freeform}{3}
+			What is $b \ (\bmod \ 15)$?
+			\Hint What is $v_1 + v_2 \ (\bmod \ 3)$? What is $v_1 + v_2 \ (\bmod \ 5)$? The numbers $v_1$ and $v_2$ are often likened to basis vectors.
+			\Solution $x = 2 \cdot v_1+3 \cdot v_2$
+			\end{Freeform}
+	\end{enumerate}
+
+\item \begin{Freeform}{10}
+	What is $v_1$ in $(\bmod \ 15)$? 
+	\Hint We need $v_1$ to be $0 \ (\bmod \ 5)$, so lets consider giving it a factor of $5$. We also need $v_1$ to be $(1 \bmod \ 3)$. Note that any multiple of $5$ will remain $0 \ (\bmod \ 5)$. What multiple should we choose such that the result is also $(1 \bmod \ 3)$?
+	\Solution $v_1 = 5 \cdot (5^{-1} \bmod \ 3) = 5 \cdot 2 \Rightarrow v_1 = 10 \ (\bmod \ 15)$
+	\end{Freeform}
+
+\item \begin{Freeform}{6}
+	What is $v_2$ in $(\bmod \ 15)$? 
+	\Hint We need $v_2$ to be $0 \ (\bmod \ 3)$, so lets consider giving it a factor of $3$. We also need $v_2$ to be $(1 \bmod \ 5)$. Note that any multiple of $3$ will remain $0 \ (\bmod \ 3)$. What multiple should we choose such that the result is also $(1 \bmod \ 5)$?
+	\Solution $v_2 = 3 \cdot (3^{-1} \bmod \ 5) = 3 \cdot 2 \Rightarrow v_2 = 6 \ (\bmod \ 15)$
+	\end{Freeform}
+
+\item \begin{Freeform}{8}
+	Putting it all together, what is $x$ in $(\bmod \ 15)$? 
+	\Hint Plug in the magic numbers from Parts (2) and (3) into Part (1)!
+	\Solution $x = 2 \cdot v_1+3 \cdot v_2 = 2 \cdot 10 + 3 \cdot 6 = 20 + 18 =  8 \ (\bmod \ 15)$
+	\end{Freeform}
+
+\end{enumerate}
+
 \noindent{\bf RSA}.
 
 \noindent Bob would like to receive encrypted messages from Alice via RSA.
