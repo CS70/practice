@@ -235,6 +235,70 @@ Calculate the probability of drawing a chocolate in the updated bag.
 %-------------------------------------------
 \end{enumerate}
 %------------------------------------------------------------------------------------------------------------------------
+
+\item Suppose you arrange 12 different cars in a parking lot, 
+uniformly at random. Three of the cars are Priuses, four of the cars 
+are Teslas, and the other five are Nissan Leaves. What is the 
+probability that the three Priuses are all together? (round your answer to the 4th decimal place)
+\begin{Freeform}{0.0455}
+\Solution There are $12!$ possible ways to arrange the 12 cars. Now, there are 
+$12 - 3+ 1 = 10$ different places the Priuses could go (positions 
+1,2,3, positions 2,3,4, all the way until positions 10,11,12). 
+For each of those 10 places, there are 3! ways to arrange the Priuses 
+and 9! ways to arrange the other 9 cars in the 9 remaining spots. 
+So, in total, there are $10*3!*9!$ ways of arranging the cars so that 
+the 3 Priuses are together. So the probability we get what we want is 
+$\frac{10*3!*9!}{12! } = .0455$.
+\end{Freeform}
+
+
+\item {\bf Probability Poker}
+Suppose we have a deck of 52 cards that is well shuffled. We draw five cards from the deck and call it a hand. For all parts below, round your answer to the 5th decimal place.
+
+\begin{enumerate}
+\item What is the probability of drawing a hand with four of a kind (four cards of the same rank)?
+\begin{Freeform}{0.00024}
+\Solution $\frac{13 * 48}{{52 \choose 5}}$. In this approach, we're working over a sample space where the order in which we draw cards doesn't matter (shown in the denominator), so our numerator is counting the number of distinct combinations where order doesn't matter. We choose a rank and this selects 4 cards (13 ways). A poker hand is 5 cards, so to complete the poker hand, we have 48 cards left to choose from.
+
+Alternative approach: we can also work over a sample space where the order the card is drawn does matter. In this approach, the denominator is: ${52 \choose 5} * 5!$. The numerator is: $13 * 12 * 4 * 5!$. Note that this gives us the same answer as the the first approach.
+\end{Freeform}
+
+
+\item What is the probability of drawing a straight (five cards in numerical order)?
+\begin{Freeform}{0.00394}
+\Solution $\frac{10 * 4^5}{{52 \choose 5}}$. There are 10 possible straights to choose from: {A-5}, {2-6}, {3-7}, ..., {10-A}. For each of those straights, for each number, there are 4 suits to choose from, so there are $4^5$ ways to choose cards. 
+\end{Freeform}
+
+\item A super straight is a hand of straight that comes in ascending order. For example, drawing a 3, then 4, then 5, 6, and 7 is called drawing a super straight. What is the probability of drawing a super straight?
+\begin{Freeform}{0.00003}
+\Solution $\frac{40 * 4^4}{{52 \choose 5} * 5!}$. We have to work in a sample space where order does matter in this problem as the definition of a super straight involves order. The denominator is thus ${52 \choose 5} * 5!$. There are 10 possible straights: {A-5}, {2-6}, {3-7}, ..., {10-A}. So for the first card, you have $10 * 4 = 40$ choices. As the card has to come in ascending order, each of the next 4 cards has 4 choices (4 suits to choose from). So the numerator is $40 * 4^4$. Note that the answer is exactly $1 / 5!$ of the previous part. 
+\end{Freeform}
+
+\item What is the probability of drawing a flush (five cards all of the same suit)?
+\begin{Freeform}{0.00198}
+\Solution $\frac{4 * {13 \choose 5}}{{52 \choose 5}}$. First, choose a suit (4 suits). Then choose 5 cards from each suit which has 13 cards ${13 \choose 5}$. 
+\end{Freeform}
+
+\item What is the probability of drawing a straight flush (five cards in numerical order, all of the same suit)?
+\begin{Freeform}{0.00002}
+\Solution $\frac{4 * 10}{{52 \choose 5}}$. First choose a suit (4 ways). Then choose a straight (10 ways).
+\end{Freeform}
+
+\item What is the probability of drawing a hand with exactly one pair (two cards of matching rank)?
+
+\begin{Freeform}{0.42257}
+\Solution $ \dfrac{13 * {4 \choose 2} * {12 \choose 3} * 4^3}{{52 \choose 5}}$. Choose a rank for the pair (13 ways) and 2 suits (${4 \choose 2}$ ways). Now we need 3 other cards to complete our poker hand. Since we have exacly one pair, all three are from different ranks. There are 12 ranks left to choose 3 ranks (${12 \choose 3}$ ways) and for each rank there are 4 ways to choose a suit ($4^3$ ways). 
+\end{Freeform}
+
+\end{enumerate}
+
+
+
+
+
+
+
+
 \item {\bf Bayesian Inference.} In this problem, we will work through an example of Bayesian Inference.
 
 Suppose you would like to decide whether to go to on a picnic tomorrow.
