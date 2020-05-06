@@ -282,42 +282,61 @@ For example, you can try to prove that $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ by c
 using only the set-counting definition of $\binom{n}{k}$. What is the quantity on the left counting? Can you argue that the quantity on the right is counting the same thing?
 
 % -----------------------------------------------------------------------------------------
-\item Prove $k\binom{n}{k} = n\binom{n - 1}{k - 1}$ by a combinatorial proof.
+\item Fill in the blank:
+$k\binom{n}{k} = \cdots$, 
+
+\begin{Choices}
+\Hint Consider picking a team and a captain.
 \begin{enumerate}
-\begin{Multi}
-\TrueChoice\item placeholder
+\FalseChoice\item $(n - 1)\binom{n-1}{k}$
+\TrueChoice\item $n\binom{n - 1}{k - 1}$
+\FalseChoice\item $n\binom{n - 1}{k}$
+\FalseChoice\item $\binom{n}{k+1}$
+
 \Solution Choose a team of $k$ players where one of the players is the captain. \\
 LHS: Pick a team with $k$ players. This is ${n \choose k}$. Then make one of the players the captain. There are $k$ options for the captain so we get $k \times \binom{n}{k}$. \\
 RHS: Pick the captain. There are $n$ choices for the captain. Now pick the last $k - 1$ players on the team. There are now $n - 1$ people to choose from. So we get $n \times \binom{n - 1}{k - 1}$.
-\end{Multi}
 \end{enumerate}
+\end{Choices}
 
 % ------------------------------------------------------------------------------------------
-\item Prove $n! = \binom{n}{k}k!(n - k)!$ by a combinatorial proof.
+\item Fill in the blank:
+$n! = \cdots$
 \begin{enumerate}
-\begin{Multi}
-\TrueChoice\item placeholder
+\begin{Choices}
+\FalseChoice\item $\binom{n - k}{k}k!(n - k)!$
+\FalseChoice\item $\binom{n}{k}k!$
+\TrueChoice\item $\binom{n}{k}k!(n - k)!$
+\FalseChoice\item $\binom{n}{k}(n-k)!$
 \Solution Arrange $n$ items. \\
 LHS: Number of ways to order $n$ items. \\
 RHS: Choose $k$ items without ordering. Order these $k$ items. 
 Order the remaining $n - k$ items.
-\end{Multi}
+\end{Choices}
 \end{enumerate}
 
 % ---------------------------------------------------------------------------------------------
-\item Prove $\binom{n}{a} a(n - a)= n(n - 1)\binom{n - 2}{a - 1}$ 
-by a combinatorial proof.
-\begin{enumerate}
+\item Fill in the blank:
+$\binom{n}{a} a(n - a)= \cdots$ 
+
 \begin{Multi}
-\TrueChoice\item placeholder
+\Hint Consider ways of picking a team, a captain and a reserve player. 
+\begin{enumerate}
+
+\TrueChoice\item $n(n - 1)\binom{n - 2}{a - 1}$
+\FalseChoice\item $n \binom{n - 1}{a - 1}$
+\FalseChoice\item $\binom{n}{a+1}$
+\FalseChoice\item $(a+1)\binom{n}{a+1}$
+\TrueChoice\item $(a+1)a \binom{n}{a+1}$
 \Solution Suppose that you have a group of $n$ players and want to pick a team of $a$ with a captain, as well as a reserve player from the remaining $n-a$ players. \\
 LHS: Number of ways to pick a team of $a$ of these players ($\binom{n}{a} $ ways), designate 
 one member of the team as captain ($a$ ways), and then pick one reserve player 
 from the remaining $n - a$ people ($n-a$ ways). \\
 RHS: The right-hand side is the number of ways to pick the captain ($n$ ways), then the reserve player ($n-1$ ways), and then the 
 other $a - 1$ members of the team ($\binom{n - 2}{a - 1}$ ways).
-\end{Multi}
 \end{enumerate}
+\end{Multi}
+
 
 
 \end{enumerate}
