@@ -131,6 +131,82 @@
 	But when $S$ is infinite, we can extract an infinite sequence out of it by the following method: we pick an element $a_1$; there must be another element $a_2$; there must be another element $a_3$, and so on. This process never stops because $S$ is infinite. Now construct a bijection between $S$ and $S'$ by mapping each $a_i$ to $a_{i+1}$, mapping the new element to $a_1$, and mapping other elements to themselves. This shows that $S$ and $S'$ have the same cardinality.
 	\end{Multi}
 
+	\item Are these sets countably infinite/uncountably infinite/finite? Reminder: A bit string is a sequence of digits where each digit corresponds to either a 1 or a 0.
+
+	\begin{enumerate}
+		\item Finite bit strings of length exactly n.
+		\begin{Choices}
+		\begin{itemize}
+			\TrueChoice\item Finite
+			\FalseChoice\item Countably Infinite
+			\FalseChoice\item Uncountably Infinite
+		\end{itemize}
+		\Solution Finite. There are 2 choices (0 or 1) for each bit, and n bits, so 
+     	there are $2 \cdot 2 \cdot \ldots \cdot 2 = 2^n$ such bit strings.
+		\end{Choices}
+
+		\item All finite-length bit strings of length ranging from 1 to n.
+		\begin{Choices}
+		\begin{itemize}
+			\TrueChoice\item Finite
+			\FalseChoice\item Countably Infinite
+			\FalseChoice\item Uncountably Infinite
+		\end{itemize}
+		\Solution Finite. Finite. By part (a), there are $2^1$ bit strings of length 1, $2^2$ of 
+     	length 2, etc. Thus, there are $2^1 + 2^2 + \ldots + 2^n = 2^{n + 1}- 2$.
+		\end{Choices}
+
+		\item All bit strings of any finite length.
+		\begin{Choices}
+		\begin{itemize}
+			\FalseChoice\item Finite
+			\TrueChoice\item Countably Infinite
+			\FalseChoice\item Uncountably Infinite
+		\end{itemize}
+		\Solution Countably infinite. We show there is an injection from the set to natural numbers and vice versa.
+
+		There is an injection from all finite length bit string to natural numbers: We can list these strings as follows: \\*
+		$(0, 1, 00, 01, 10, 11, 000, 001, 010, 011, 100, 101, 110, 111, 0000, \ldots)$. 
+		We map from the the bit string to its position in the list. 
+
+		There is an injection from natural numbers to all finite length bit strings: We map every natural number to its binary representation -- $0 \rightarrow 0, 1 \rightarrow 1, 2 \rightarrow 10, 3 \rightarrow 11, \cdots$.
+
+		Therefore, the set has the same cardinality as natural numbers and is countably infinite.
+		\end{Choices}
+
+		\item All infinite-length bit strings
+		\begin{Choices}
+		\begin{itemize}
+			\FalseChoice\item Finite
+			\FalseChoice\item Countably Infinite
+			\TrueChoice\item Uncountably Infinite
+		\end{itemize}
+		\Solution Uncountably infinite. We can show that the set of all initinite-length bit strings $S$ has a cardinality at least as large as the set of real numbers between 0 and 1, which is uncountably infinite. In particular, we show $|S| \geq \mathbb{R}[0, 1]$ by constructing an injection from $\mathbb{R}[0, 1]$ to $S$: we map every real number between 0 and 1 to their binary representation. This is an injection because any two different real numbers between 0 and 1 will have different binary representations. 
+
+		Bonus: In fact, we can further show $|S| \leq \mathbb{R}[0, 1]$ by constructing an injection the other way around, from $S$ to $\mathbb{R}[0, 1]$: For binary string $b_1b_2b_3 \cdots$, we map it to the real number 
+		$\Sigma_{i=1} ^ {\infty} b_i * 3 ^ {-i}$. Note here we use base 2 instead (i.e. $\Sigma_{i=1} ^ {\infty} b_i  * 2 ^ {-i}$), the mapping would not be injective: string $1000 \cdots$ will map to $1/2$ and string $0111 \cdots$ will also map to $\Sigma_{i=2} ^ {\infty} 2 ^ {-i} = 1 / 2$.
+
+		Therefore, the set of all infinite-length bit strings is uncountably infinite, and according to bonus, it has the same cardinality as $\mathbb{R}[0, 1]$. (You may wonder why we bother to show the set has the same cardinality as $\mathbb{R}[0, 1]$, don't all uncountably infinite set all have the same cardinality, i.e. the cardinality of real numbers? It turns out that there are uncountably infinite sets with strictly larger cardinality than real numbers!)
+		\end{Choices}
+
+		\item The Union of all finite-length and infinite-length bit strings.
+		\begin{Choices}
+		\begin{itemize}
+			\FalseChoice\item Finite
+			\FalseChoice\item Countably Infinite
+			\TrueChoice\item Uncountably Infinite
+		\end{itemize}
+
+		\Solution Uncountably infinite. This set $S$ has a cardinality at least as large as $\mathbb{Z}[0, 1]$ as it's the union of a countably infinite set 
+		(part c) and an uncountably infinite set with the same cardinality as $\mathbb{Z}[0, 1]$ (part d), so it is uncountably infinite.
+
+		Bonus: In fact, we can further show $|S| \leq \mathbb{Z}[0, 1]$ by constructing an injection from $S$ to $\mathbb{Z}[0, 1]$. For a finite binary string $b_1b_2b_3 \cdots b_k$, we map it to the real number $\Sigma_{i=1} ^ k b_i * 4 ^ {-(i+1)}$. For a infinite binary string $b_1b_2b_3 \cdots$, we map it to the real number $4^{-1} + \Sigma_{i=1} ^ k b_i * 4 ^ {-(i+1)}$. We know this mapping is injective because a finite string and an infinite string will never map to the same number. In addition, two different finite strings will never map to the same number and two differnet infinite strings will never map to the same number. 
+
+		Therefore, the union of all finite-length and infinite-length bit strings is uncountably infinite, and according to bonus, it has the same cardinality as $\mathbb{R}[0, 1]$.
+		\end{Choices}
+
+	\end{enumerate}
+
 \end{enumerate}
 
 \noindent{\bf Computability}
