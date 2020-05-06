@@ -345,6 +345,34 @@
       \Solution As stated above, the original answer is $2$.
     \end{Freeform}
   \end{enumerate}
+
+\noindent{\bf Fraction of Lost Packets}
+\item[3.] Recall from class the error-correcting code for erasure errors, which
+protects against up to $k$ lost packets by sending a total of $n+k$ packets
+(where $n$ is the number of packets in the original message).  Often the number
+of packets lost is not some fixed number $k$, but rather a \emph{fraction} of
+the number of packets sent.  
+
+\begin{enumerate}
+\item Let $n = 300$. Suppose we wish to protect against a fraction $\alpha = 0.2$ of lost packets.  At least how many packets do 
+we need to send?
+\begin{Freeform}{375}
+\Solution Suppose we send a total of $m$ packets (where $m$ is to be determined).
+  Since at most a fraction $\alpha$ of these are lost, the number of packets
+  received is at least $(1-\alpha)m$. But in order to reconstruct the
+  polynomial used in transmission, we need at least $n$ packets. Hence it is
+  sufficient to have $(1-\alpha)m \geq n$, which can be rearranged to give $m\geq
+    n/(1-\alpha) = 300 / (1 - 0.2) = 375$.
+\end{Freeform}
+
+\item Repeat the last part with general error. 
+\begin{Freeform}{500}
+\Solution Suppose we send a total of $m = n + 2k$ packets, where $k$ is the number
+  of errors we can guard against. The number of corrupted packets is at most
+  $\alpha m$, so we need $k \geq \alpha m$. Hence $m \geq n + 2\alpha m$.
+    Rearranging gives $m\geq n/(1-2\alpha) = 300 / (1 - 0.4) = 500$.
+\end{Freeform}
+\end{enumerate}
 \end{enumerate}
 
 \end{document}
