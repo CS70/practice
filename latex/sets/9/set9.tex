@@ -289,13 +289,32 @@ Alternative approach: we can also work over a sample space where the order the c
 \begin{Freeform}{0.42257}
 \Solution $ \dfrac{13 * {4 \choose 2} * {12 \choose 3} * 4^3}{{52 \choose 5}}$. Choose a rank for the pair (13 ways) and 2 suits (${4 \choose 2}$ ways). Now we need 3 other cards to complete our poker hand. Since we have exacly one pair, all three are from different ranks. There are 12 ranks left to choose 3 ranks (${12 \choose 3}$ ways) and for each rank there are 4 ways to choose a suit ($4^3$ ways). 
 \end{Freeform}
-
 \end{enumerate}
 
+\item Suppose we have a bag with 2 coins. One of them is fake: it has heads on both faces. The other is a normal coin. You pull a coin out of the bag and flip it. It comes up heads. What is the probability that this coin is the fake one? (Express your answer as a fraction)
+
+\begin{Freeform}{2/3}
+\Solution Approach 1: Define event A as drawing the fake coin. Define event B as the coin that we flipped coming up heads. We want to find $P(A|B)$. Using Bayes' Rule,
+$P(A|B) = \frac{P(B \cap A)}{P(B)} = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\bar{A})P(\bar{A})} = \frac{1 * \frac{1}{2}}{1 * \frac{1}{2} + \frac{1}{2} * \frac{1}{2}} = \frac{2}{3}$
+
+ Approach 2: There are 6 possible outcomes which are all equally likely. We have $2$ choices for the coin that we draw (which we represent by $HH$, $HT$ ). Then for each coin we have two choices, we either see the first side or the second side (which we represent by $1$ and $2$). So the outcomes are $\Omega =\{(HH, 1), (HH, 2), (HT, 1), (HT, 2)\}$. Now given that we saw a heads, we can get rid of $1$ of the outcomes, and the possible remaining outcomes are $\{(HH, 1), (HH, 2), (HT, 1)\}$ which are all equally likely. In this space, the event that the coin has two heads is $\{(HH, 1), (HH, 2)\}$ which consists of two equally likely outcomes. So the probability is $2/3$.
+\end{Freeform}
 
 
+\item A lie detector is known to be $4/5$ reliable when the person is guilty
+and $9/10$ reliable when the person is innocent. If a suspect is chosen
+from a group of suspects of which only $1/100$ have ever committed a 
+crime, and the test indicates that the person is guilty, what is the 
+probability that he is guilty?
 
+\begin{Freeform}{8/107}
+Let $I_G$ denote the event that the test indicates that the person is guilty, and $G$ the event that the person is actually guilty. Note that
+$$\Pr[G]=\frac{1}{100},\quad \Pr[\overline{G}]=\frac{99}{100},\quad \Pr[I_G\mid G]=\frac{4}{5},\quad \Pr[I_G\mid\overline{G}]=\frac{1}{10}.
+$$
 
+By Bayes' Rule and the Total Probability Rule the desired probability is
+$$\Pr[G\mid I_G]= \frac{\Pr[G]\Pr[I_G\mid G]}{\Pr[I_G]}=\frac{\Pr[G]\Pr[I_G\mid G]}{\Pr[G]\Pr[I_G\mid G]+\Pr[\overline{G}]\Pr[I_G\mid \overline G]}=\frac{(1/100)(4/5)}{(1/100)(4/5) + (99/100)(1/10)} = \frac{8}{107}$$
+\end{Freeform}
 
 
 
@@ -510,6 +529,78 @@ So the chances are roughly 40\%.
 %-----------------------------------
 \end{enumerate}
 %-----------------------------------
+\item Oski the bear has lost his dog in either forest $A$ (with  
+prior probability 0.4) or in forest $B$ (with prior probability 0.6). \\*                   
+On any given day, if the dog is in $A$ and Oski spends a day searching 
+for it in $A$, the probability that he will find the dog 
+that day is 0.25. Similarly, if the dog is in $B$ and Oski spends a day 
+looking for it there, the probability that he will find the 
+dog that day is 0.15. \\*               
+The dog cannot go from one forest to the other. Oski can search only in 
+the daytime, and he can travel from one forest to the other only at night.
+
+\begin{enumerate}
+  \item In which forest should Oski look to maximize the probability he 
+finds his dog on the first day of the search?
+  \begin{Choices}
+  \begin{itemize}
+    \TrueChoice\item Forest A
+    \FalseChoice\item Forest B
+  \end{itemize}
+  \Solution Let $A$ denote the event that dog is in forest A. Let $B$ denote the event that dog is in forest B. 
+
+  Let $S$ be the event that Oski successfully found the dog. 
+
+  If Oski searches in Forest A, probability of finding the dog is 
+  $P(A \cap S) = P(A) * P(S | A) = 0.4 * 0.25 = 0.1$
+
+  If Oski searches in Forest B, probability of finding the dog is 
+  $P(B \cap S) = P(B) * P(S | B) = 0.6 * 0.15 = 0.09$
+
+  $0.1 > 0.09$. so Oski should search in \textbf{Forest A}
+  \end{Choices}
+
+  \item Given that Oski looked in $A$ on the first day but didn’t find 
+        his dog, what is the probability that the dog is in $A$? (round your answer to 2nd decimal place)
+  \begin{Freeform}{0.33}
+   \begin{align*}
+  P(A &\mid \bar{S}) 
+  \\ &= \dfrac{P(A \cap \bar{S})}{P(\bar{S})} 
+  \\ &=  \dfrac{P(A) * P(\bar{S} | A)}{P(A) * P(\bar{S} | A) + P(B) * P(\bar{S} | B)} \\ 
+  &= \dfrac{0.4 * 0.75 }{0.4 * 0.75 + 0.6 * 1} = 0.33   
+  \end{align*}
+
+  Note that $P(\bar{S} | B) = 1$ because Oski looked in forest A.
+  \end{Freeform} 
+
+  \item If the dog is alive and not found by the first day of search, 
+        it will die that evening with probability $\frac{1}{3}$. Oski has 
+        decided to look in $A$ for the first two days. What is the probability 
+        that he will find a live dog for the first time on the second day? (round your answer to 2nd decimal place)
+  \begin{Freeform}{0.05}
+    Let $S_i$ denote the event that the search on $i$ th day is successful. Let $D_i$ denote the event that the dog is dead the end of the $i$th day.
+
+    For Oski to find a live dog for the first time on the second day, four events have to happen simultaneously:
+
+    \begin{itemize}
+    \item the dog must be in A (event $A$)
+    \item Oski must not have found it on the first day (event $\bar{S_1}$)
+    \item It must not die the first evening (event $\bar{D_1}$)
+    \item Oksi must find it on the second day (event $\bar{S_2}$)
+    \end{itemize}
+
+    Therefore
+    \begin{align*}
+        &P(\text{Oski find a live dog for the first time on the second day}) \\
+        &= P(A \cap \bar{S_1} \cap \bar{D_1} \cap \bar{S_2}) \\
+        &= P(A) P(\bar{S_1} | A) P(\bar{D_1}| A \cap \bar{S_1}) P(\bar{S_2} | A \cap \bar{S_1} \cap \bar{D_1}) \\
+        &= 0.4 * 0.67 * 0.75 * 0.25 = 0.05
+    \end{align*}
+
+  \end{Freeform}
+
+
+\end{enumerate}
 
 \end{enumerate}
 
