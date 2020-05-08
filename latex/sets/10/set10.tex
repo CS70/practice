@@ -198,6 +198,42 @@ $P(A \cup B \cup C) = P(A) + P(B) + P(C) - P(A \cap B) - P(A \cap C) - P(B \cap 
 \end{Freeform}
 
 %-------------------------------------------------------------------------------------------------------------------------
+\item Let $G_n$ be a random graph on n vertices generated in the following way: each edge $(u, v)$ is present in $G$ with probability 1/2 independent of any other edges. We say a vertex is isolated if there is no edge incident to it. We want fo find the probability that an isolated vertex exists in $G_n$ as $n \rightarrow \infty$.
+
+\begin{enumerate}
+\item What is the probability that a randomly chosen vertex is isolated in $G_n$?
+\begin{Choices}
+\begin{itemize}
+\FalseChoice\item $2^{-(n+1)} $   
+\FalseChoice\item $2^{-n}$
+\TrueChoice\item $2^{-(n-1)}$
+\FalseChoice\item $1/2$
+\end{itemize}
+\Solution $2^{-(n-1)}$ since there are $n-1$ possible adjacent edges, all of which must not be present. 
+\end{Choices}
+
+\item Denote the probablity in obtained in the previous part by $p$. Using a union bound, what is an upper bound of the probability $p_n$ that there exists an isolated vertex in $G_n$? 
+\begin{Choices}
+\begin{itemize}
+\TrueChoice\item $np$
+\FalseChoice\item $p^n$   
+\FalseChoice\item $np^2$
+\end{itemize}
+\Solution $np$. 
+\end{Choices}
+
+\item What is $p_n$ as $n \rightarrow \infty$? 
+\begin{Choices}
+\begin{itemize}
+\FalseChoice\item $1$
+\TrueChoice\item $0$   
+\FalseChoice\item $p$
+\FalseChoice\item $1/2$
+\end{itemize}
+\Solution $p_n = np = n2^{-(n-1)}$. Since $2^{-(n-1)}$ would dominate the linear term $n$, $p_n \rightarrow 0$ as $n \rightarrow \infty$. 
+\end{Choices}
+\end{enumerate}
+%-------------------------------------------------------------------------------------------------------------------------
 \item {\bf Balls and Bins.} Suppose you have $m$ labeled balls $a_1, \ldots, a_m$ that you have thrown one by one, uniformly at random into $n$ labeled bins $b_1, \ldots, b_n$. For each of the probabilities below, select all answers that apply from the list of choices.
 \begin{enumerate}
 \item What is the probability that $b_j$ contains $a_i$? Select all answers that apply.
