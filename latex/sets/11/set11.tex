@@ -257,5 +257,118 @@ $\E[Z | R_2 = 1]$ =
 %-----------------------------------------
 \end{enumerate}
 
+% --------------------------------------------------------------------------------------------------------------------------
+\item {\bf Binomial Games} Suppose that the Cleveland Browns have probability $p = 0.15$ chance of winning a football game. Assume that the results of all games are mutually independent. The football regular season has 16 games.
+\begin{enumerate}
+    \item Write an expression for the probability that they win between $6$ and $8$ games (inclusive) during the course of a season. Evaluate it and round it to the 2nd decimal place.
+    \begin{Freeform}{0.02}
+    \Solution \[\binom{16}{6}(0.15)^6(0.85)^{10} + \binom{16}{7}(0.15)^7(0.85)^9 + \binom{16}{8}(0.15)^8(0.85)^8\]
+    \end{Freeform}
+
+    \item Find the probability that they win at least one game during the course of a season. Round your answer to the 2nd decimal place
+    \begin{Freeform}{0.92}
+    \Solution We could sum up the probabilities that they win 1 game, 2 games, etc. or, we could find the probability that they win 0 games and subtract that from 1. \[p = 1 - 0.85^{16} = .92\]
+    \end{Freeform}
+\end{enumerate}
+% --------------------------------------------------------------------------------------------------------------------------
+\item {\bf Absent Cal Bear} Andy is a freshman at Cal. Every day, Andy wakes up, silences his 7:30 alarm, and chooses whether to go to class or back to sleep. With $p = 0.2$ he chooses to go to class, and with probability $0.8$ he decides otherwise. His choices on each day are mutually independent. Find probabilities of the following events:
+\begin{enumerate}
+    \item the first time he goes to class is the $5^{th}$ day of school?
+    \begin{Choices}
+    \begin{itemize}
+    	\TrueChoice\item $(1-0.2)^40.2$
+    	\FalseChoice\item $0.2^4(1-0.2)$
+    	\FalseChoice\item $(1-0.2)^4$
+    	\FalseChoice\item $0.2^5$
+    \end{itemize}
+    \Solution $(1-0.2)^40.2$
+    \end{Choices}
+
+    \item the first time he goes to class is after the $5^{th}$ day? Round your answer to the 2nd decimal place.
+    \begin{Freeform}{0.33}
+    \Solution Let $X \sim Geom(n,p)$. \[ p = \sum_{i = 5}^{\infty} (1-0.2)^{i}0.2\] We can solve this using the sum of an infinite geometric series.
+
+    We can also consider the following approach: in order for him to go to class for the first time after the $5^{th}$ day, all he has to do is fail to go to class for 5 days in a row. This probability is $(1-0.2)^5 = 0.33$. 
+
+    To see that the two approaches agrees, we have in general: $P(X>k) = \sum_{i=k + 1}^{\infty} P(X=i) = \sum_{i=k}^{\infty} p(1-p)^i = p(1-p)^k - \sum_{i=0}^{\infty} (1-p)^i = p(1-p)^k \frac{1}{1-(1-p)} = (1-p)^k$.
+    \end{Freeform}
+
+    \item He goes to class on the $5^{th}$ day or before? Round your answer to the 2nd decimal place.
+    \begin{Freeform}{0.67}
+
+    \Solution Use the complement of the last question. $p = 1-(1-0.2)^5 = 0.67$. In general: $P(X\leq k) = 1-(1-p)^k$.  
+    \end{Freeform}
+
+\end{enumerate}
+
+% --------------------------------------------------------------------------------------------------------------------------
+\item {\bf Alternating Darts} Alex and Bob are playing darts. They take turns throwing the dart and the first one to hit the center wins. Each turn, Alex hits the center with probability $p$ and Bob hits the center with probability $q$. Alex gets to go first. We will explore two ways of finding out how likely it is for Alex to win.
+
+\begin{enumerate}
+    \item What is the probability that Alex wins on the $k^{th}$ turn? 
+    \begin{Choices}
+    \begin{itemize}
+    	\FalseChoice\item $(1-p)^{k-1}p$
+    	\FalseChoice\item $(1-p)^{k-1}q^kp$
+    	\TrueChoice\item $((1-p)(1-q))^{k-1}p$
+    	\FalseChoice\item $((1-p)(1-q))^{k-1}pq$
+    \end{itemize}
+    \Solution both Alex and Bob must miss for the first $k-1$ turns, then Alex must hit the center on the $k^{th}$ turn. Thus, the probability he wins on the $k^{th}$ turn is $((1-p)(1-q))^{k-1}p$
+    \end{Choices}
+
+
+    \item Denote the answer from the previous part $p_k$. What is the probability that Alex wins on any turn? Select all that apply
+    \begin{Multi}
+    \begin{itemize}
+    	\FalseChoice\item $\frac{p}{p+q}$
+    	\TrueChoice\item $\frac{p}{p+q-pq}$
+    	\TrueChoice\item $\sum_{k=1}^{\infty} p_k$
+    	\FalseChoice\item $\Pi_{k=1}^{\infty} p_k$
+    \end{itemize}
+    \Solution Let $A_k$ denote the event that Alex won on turn $k$.
+    $$\sum_{k=1}^{\infty} P(A_k) = \sum_{k=1}^{\infty}((1-p)(1-q))^{k-1}p = p\sum_{k=0}^\infty((1-p)(1-q))^{k} = \frac{p}{1-(1-p)(1-q)} = \frac{p}{p+q-pq} $$
+    \end{Multi}
+    
+
+    \item we say that the game ended on turn $k$ if either Alex or Bob hit the center on turn $k$. Let $X$ be a random variable corresponding to the turn that the game ended on. What is the distribution of $X$?
+    \begin{Choices}
+    \begin{itemize}
+    	\FalseChoice\item $Binom(p+q-pq)$
+    	\FalseChoice\item $Binom(p)$
+    	\FalseChoice\item $Binom(p(1-q))$
+    	\FalseChoice\item $Geom(p)$
+    	\TrueChoice\item $Geom(p+q-pq)$
+    	\FalseChoice\item $Geom(p(1-q))$
+    \end{itemize}
+
+    \Solution The probability that the game ends on each turn equals to the probability that either Alex or Bob hits the center on that turn, and each turn is independent. By the inclusion-exclusion principal, the probability that either Alex or Bob hits the center on a given turn is $p+q-pq$. Thus $X \sim Geom(p+q-pq)$. 
+
+    Alternative approach: Let $Y$ be the random variable indicating the number of turns it takes for Alex to hit the center. So $Y \sim Geom(p)$. Define $Z$ similarly for Bob and so $Z \sim Geom(q)$. Since the game ends on the turn when either of them hits the center, we know $X = min(Y, Z)$. From discussion, we know $X = min(Y, Z) \sim Geom(p + q - pq)$. This agrees with our previous approach. 
+    \end{Choices}
+    
+
+    \item  Using parts $a$ and $c$, what is the probability that Alex wins given that the game ended on turn $k$? Select all that apply. 
+    \begin{Multi}{}
+    \begin{itemize}
+    	\FalseChoice\item $\frac{p}{p+q}$
+    	\TrueChoice\item $\frac{p}{p+q-pq}$
+    	\TrueChoice\item $\frac{((1-p)(1-q))^{k-1}p}{((1-p)(1-q))^{k-1}(p+q-pq)}$
+    	\FalseChoice\item $\frac{((1-p)(1-q))^{k-1}p}{((1-p)(1-q))^{k-1}(p+q)}$
+    \end{itemize}
+    \Solution Let $A_k$ denote the event that Alex won on turn $k$. Then we have
+        \begin{align*}
+            Pr[A_k | X=k] &= \frac{Pr[A_k \cap X=k]}{Pr[X=k]}\\
+            &= \frac{Pr[A_k]}{Pr[X=k]}\\
+            &= \frac{((1-p)(1-q))^{k-1}p}{((1-p)(1-q))^{k-1}(p+q-pq)}\\
+            &=\frac{p}{p+q-pq}
+        \end{align*}
+
+    \end{Multi}
+    
+\end{enumerate}
+
+% --------------------------------------------------------------------------------------------------------------------------
+
+
 \end{enumerate}
 \end{document}
