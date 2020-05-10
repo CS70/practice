@@ -116,7 +116,7 @@ Hence, $Var(X) = E(X^2) - E(X)^2 = \frac{3}{4} - \frac{1}{2^2} = \frac{1}{2}$.
 \end{enumerate}
 
 %------------------------------------------------------------------------------------------------------------------------
-\item Two friends have n books they would like to read. Each friend independently picks a random permutation of the books and read them in that order. They read one book per week, for n concesutive weeks. Let $X$ be the number of weeks in which both friends are reading the same book. Computer $Var(X)$.
+\item Two friends have n books they would like to read. Each friend independently picks a random permutation of the books and read them in that order. They read one book per week, for n concesutive weeks. Let $X$ be the number of weeks in which both friends are reading the same book. Compute $Var(X)$.
 
 \begin{Freeform}{1}
 \Solution Let $X_i$ be the indicator of the event that both friends are reading the same book on week i. Note $X = \sum_{i=1}^{n} X_i$. 
@@ -306,6 +306,63 @@ $\Pr[Z = \$1.40] \le  \Pr[|Z - \E[Z]| \ge a] \le$
 \end{enumerate}
 
 %--------------------------------------------------------------------------------------------------------------------------
+
+\item {\bf Meaningful Markov Inequality} Let $X \geq 0$ be a random variable with $E[X] = \mu$. If we upper bound $P(X \geq t)$ with Markov's inequality, what condition does $t$ need to satisfy for the bound to be meaningful?
+\begin{Choices}
+\Hint What is an upper bound for $P(X \geq t)$ true for any random variable?
+
+\begin{itemize}
+	\TrueChoice\item $t < \mu$
+	\FalseChoice\item $t > \mu$
+	\FalseChoice\item $t < \frac{1}{\mu}$
+	\FalseChoice\item $t > \frac{1}{\mu}$
+
+\end{itemize}
+\Solution $P(X \geq t ) \leq \frac{\mu}{t}$. We want $\frac{\mu}{t} < 1$ to obtain a non trivial bound. 
+\end{Choices}
+
+%--------------------------------------------------------------------------------------------------------------------------
+\item Suppose $X$ is a random variable with mean 5 and variance 2.
+
+\begin{enumerate}
+	\item Using Chebyshev's Inequality, derive an upper bound for $P(X \notin (3, 7))$.
+	\begin{Freeform}{0.5}
+	\Solution $P(|X - E(X)| \geq 2) \leq Var(X) / 2^2 = 2 / 4 = 1/2$
+
+	\end{Freeform}
+
+	\item Derive an upper bound for $P(X \notin (1, 7))$. 
+	\begin{Freeform}{0.5}
+	$P(X \notin (1, 7)) \leq P(X \notin (3, 7)) \leq 1/2$
+	\end{Freeform}
+
+	\item Derive an upper bound for $P(X \geq 7)$.
+	\begin{Freeform}{0.5}
+	$P(X \geq 7) \leq P(X \notin (3, 7)) \leq 1/2$
+	\end{Freeform}
+
+
+	\item Suppose we knew, in addition that X follows a symmetric distribution. That is, for any $k > 0$, $P(X \geq  E(X) + k) = P(X \leq  E(X) - k)$. Derive an upper bound on $P(X \geq 7)$.
+
+	\begin{Freeform}{0.25}
+	$\leq P(X \notin (3, 7)) = P(X \geq 7) + P(X \leq 3) = 2P(X \geq 7) \leq 1/2$. So $P(X \geq 7) \leq 1/4$
+	\end{Freeform}
+
+
+
+\end{enumerate}
+%--------------------------------------------------------------------------------------------------------------------------
+\item Assume that each Berkeley student is a CS major independently with probability p. We want to estimate p as follows: We sample n students and observe the fraction of students that are CS major among them is $\hat{p}$. Let $\hat{p}$ be our estimator of $p$. Using Chebyshev's inequality, how large must n be to ensure that $P(p \in [\hat{p} - \epsilon, \hat{p} + \epsilon]) \geq 1 - \delta$, given $\epsilon = 0.1$ and $\delta = 0.05$? 
+
+\begin{Freeform}{500}
+\Solution $Var(\hat{p}) = \frac{1}{n} p(1-p) \leq \frac{1}{4n} $. So by Chebyshev's inequality
+$$P(|p - \hat{p}| \geq \epsilon) \leq \frac{Var(\hat{p})}{\epsilon^2} \leq \frac{1}{4n\epsilon^2}$$
+
+To ensure $P(p \in [\hat{p} - \epsilon, \hat{p} + \epsilon]) \geq 1 - \delta$, it's sufficient to set $\frac{1}{4n\epsilon^2} \leq \delta$. Thus, it's sufficient to let $n \geq \frac{1}{4\epsilon^2\delta} = \frac{1}{0.1^20.05} = 500$.
+\end{Freeform}
+
+
+
 
 %--------------------------------------------------------------------------------------------------------------------------
 \end{enumerate}
