@@ -21,7 +21,7 @@
 % \geometry{landscape} % set up the page for landscape
 %   read geometry.pdf for detailed page layout information
 
-\usepackage{graphicx} % support the \includegraphics command and options
+\usepackage{graphicx} % su0pport the \includegraphics command and options
 \usepackage{color, tikz}
 % \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
 
@@ -71,6 +71,74 @@
 \noindent{\bf Random Variables, and Probability Distributions.}
 
 \begin{enumerate}
+\item A monkey types at a 26-letter keyboard with one key corresponding to each of the lower-case English letters. Each keystroke is chosen independently and uniformly at random from the 26 possibilities. If the monkey types 1 million letters, what is the expected number of times the sequence "book" appears? (Round your answer to 2nd decimal place).
+\begin{Freeform}{2.19}
+\Solution 
+Let $A$ be the random variable denoting the number of times "book" appears. There are $1000000 - 4 + 1 = 999997$ slots where "book" can appear. Let $A_i, i=1, 2, \cdots, 999997$ be the indicator of the event that "book" appears at the ith slot. 
+
+Note $E[A_i] = P(\text{"book" appears at the ith slot}) = \frac{1}{26}^4$.
+
+Then $E[A] = E[A_1 + \cdots + A_{999997}] = E[A_1] + \cdots + E[A_{999997}] = \frac{999997}{26^4} = 2.19$
+\end{Freeform}
+
+
+%------------------------------------------------------------------------------------------------------------------------
+\item You are at a party with n friends. You have prepared n red solo cups labeled with their name. Before handing red cups to your friends, you pick up each cup and put a sticker on it with probability $\frac{1}{2}$, independent of other cups. You shuffle the cups, and hand them back to your friends. Let $X$ denote the number of people who get their own cup back with a sticker on it.
+
+\begin{enumerate}
+\item Compute $E(X)$.
+\begin{Freeform}{0.5}
+\Solution Let $X_i$ be the indicator of the event that the i-th person gets their own cup back with a sticker on it. 
+
+$E[X_i] = P(\text{i-th person gets their own cup back with a sticker on it}) = \frac{1}{2n}$.
+
+So $E[X] = E[X_1 + \cdots + X_{n}] = E[X_1] + \cdots + E[X_n] = n \frac{1}{2n} = \frac{1}{2}$.
+
+\end{Freeform}
+
+
+\item Compute $Var(X)$.
+\begin{Freeform}{0.5}
+\Solution $Var(X) = E(X^2) - E(X)^2$. We've calculated $E(X)^2$ in the last part and need $E(X^2)$.
+
+$$E(X^2) = E((X_1 + \cdots + X_n)^2) = \sum_{i=1}^{i=n}E(X_i^2) + \sum_{i \neq j} E(X_iX_j)$$
+
+$$E(X_i^2) = P(X_i = 1) = \frac{1}{2n}$$
+
+$$E(X_iX_j) = P(X_i = 1 \cap X_j = 1) = P(X_i = 1 | X_j = 1) P(X_j = 1) = \frac{1}{2(n-1)} \frac{1}{2n}$$.
+
+So $E(X^2) = \sum_{i=1}^{i=n}E(X_i^2) + \sum_{i \neq j} E(X_iX_j) = n \frac{1}{2n} + n(n-1) \frac{1}{2(n-1)} \frac{1}{2n} = \frac{1}{2} + \frac{1}{4} = \frac{3}{4}$.
+
+Hence, $Var(X) = E(X^2) - E(X)^2 = \frac{3}{4} - \frac{1}{2^2} = \frac{1}{2}$.
+
+\end{Freeform}
+
+\end{enumerate}
+
+%------------------------------------------------------------------------------------------------------------------------
+\item Two friends have n books they would like to read. Each friend independently picks a random permutation of the books and read them in that order. They read one book per week, for n concesutive weeks. Let $X$ be the number of weeks in which both friends are reading the same book. Computer $Var(X)$.
+
+\begin{Freeform}{1}
+\Solution Let $X_i$ be the indicator of the event that both friends are reading the same book on week i. Note $X = \sum_{i=1}^{n} X_i$. 
+
+We  want to find $Var(X) = E(X^2) - E(X)^2$. 
+
+First we calculate $E(X) = \sum_{i=1}^nE(X_i)$. Note $E(X_i) = P(X_i = 1) = \frac{1}{n}$. So $E(X) = n \frac{1}{n} = 1$. 
+
+Then we calculate $$E(X^2) = E((X_1 + \cdots + X_n)^2) = \sum_{i=1}^{i=n}E(X_i^2) + \sum_{i \neq j} E(X_iX_j)$$
+
+$$E(X_i^2) = P(X_i = 1) = \frac{1}{n}$$
+
+$$E(X_iX_j) = P(X_i = 1 \cap X_j = 1) = P(X_i = 1 | X_j = 1) P(X_j = 1) = \frac{1}{n-1} \frac{1}{n}$$.
+
+So $E(X^2) = \sum_{i=1}^{i=n}E(X_i^2) + \sum_{i \neq j} E(X_iX_j) = n \frac{1}{n} + n(n-1) \frac{1}{(n-1)n} = 1 + 1 = 2$.
+
+
+Hence, $Var(X) = E(X^2) - E(X)^2 = 2 - 1 = 1$.
+
+\end{Freeform}
+
+
 %------------------------------------------------------------------------------------------------------------------------
 \item {\bf Expectation and Variance.} This problem will give you some practice calculating expectations and variances of random variables.
 \begin{enumerate}
