@@ -1,6 +1,7 @@
 import subprocess
 import sys
 import os
+import shutil
 import wand.image
 import re
 import math
@@ -11,14 +12,14 @@ def compile(entry):
     entry_file = os.path.basename(entry)
     entry_directory = os.path.dirname(entry)
     directory = os.path.join(entry_directory, 'tmp')
-    os.system("mkdir -p {}".format(directory))
+    os.makedirs(directory, exist_ok=True)
     retcode = subprocess.Popen(['pdflatex', '-interaction=nonstopmode', '-8bit', '-output-directory={}'.format(os.path.abspath(directory)), '-jobname=output', entry_file], stdout=None, stderr=None, cwd=entry_directory).wait()
     if retcode!=0:
         raise subprocess.CalledProcessError(retcode, 'pdflatex')
     with open(os.path.join(directory, 'output.aux')) as f:
         aux = f.read()
     points = [(x, float(y)) for (x, y) in re.findall(r'\\zref\@newlabel\{([^\}]+)\}\{\\posy\{(\d+)\}\}', aux)]
-    image = wand.image.Image(resolution=100, filename=os.path.join(directory, 'output.pdf'))
+    image = wand.image.Image(resolution=300, filename=os.path.join(directory, 'output.pdf'))
     y0 = points[0][1]
     y1 = points[-1][1]
     points = [(x, int(math.ceil((image.size[1])*float(y0-y)/float(y0-y1)))) for x, y in points]
@@ -30,8 +31,9 @@ def compile(entry):
         dname = dname[:dname.rindex('.')]
     dname = 'sets/{}'.format(dname)
     obj = {}
-    os.system("rm -rf {}".format(dname))
-    os.system("mkdir -p {}".format(dname))
+    if os.path.exists(dname):
+        shutil.rmtree(dname)
+    os.makedirs(dname, exist_ok=True)
     obj['name'] = config.get('name', entry_file)
     obj['contents'] = []
     points = [(x, y0, y1) for ((x, y0), (_, y1)) in zip(points[:-1], points[1:])]
@@ -44,7 +46,7 @@ def compile(entry):
     push()
     all_imgs = []
     for x, y0, y1 in points:
-        def append(is_hint=False):
+        def append(is_hint=False, is_solution=False):
             if y1!=y0:
                 all_imgs.append('{}/{}.png'.format(dname, len(all_imgs)))
                 img = image[:, y0:y1]
@@ -52,10 +54,14 @@ def compile(entry):
                 img.save(filename=all_imgs[-1])
                 if is_hint:
                     part['hint'] = all_imgs[-1]
+                elif is_solution:
+                    part['solution'] = all_imgs[-1]
                 else:
                     part['imgs'].append(all_imgs[-1])
         def hint():
-            append(True)
+            append(is_hint=True)
+        def solution():
+            append(is_solution=True)
         if x=='begin_document':
             push()
             part['type']='static'
@@ -80,6 +86,8 @@ def compile(entry):
         elif x.startswith('ans_equals@'):
             append()
             part['answer'] = x[len('ans_equals@'):]
+        elif x.startswith('solution'):
+            solution()
         elif x=='true_choice':
             if part['type']=='single':
                 part['answer']=len(part['imgs'])

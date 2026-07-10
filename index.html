@@ -27,6 +27,9 @@
       margin-top: 10px;
       margin-bottom: 5px;
     }
+    .pull-right{
+      transform: scale(2)
+    }
     label {
       display: inline;
     }
@@ -138,6 +141,15 @@
             </div><!--
             --><div class="col-xs-11 vcenter">
               <img ng-src="{{ part.hint }}" class="img-responsive" />
+            </div>
+          </div>
+        </div>
+        <div collapse="!showSolutionFor[$index]">
+          <div class="row" ng-if="part.solution">
+            <div class="col-xs-1 vcenter">
+            </div><!--
+            --><div class="col-xs-11 vcenter">
+              <img ng-src="{{ part.solution }}" class="img-responsive" />
             </div>
           </div>
         </div>
@@ -336,6 +348,7 @@
             $scope.set = $rootScope.sets[$stateParams.number];
             $scope.answer = {};
             $store.bind($scope, $scope.set.name, 'result', {});
+            $scope.showSolutionFor = {};
             $scope.check = function(index){
               var correct = false;
               var problem = $scope.set.contents[index];
@@ -372,9 +385,11 @@
               if (correct){
                 $scope.result[index] = 'solved';
                 $.bootstrapGrowl('Correct answer', {type: 'success', allow_dismiss: false});
+                $scope.showSolutionFor[index] = true;
               }
               else{
                 $.bootstrapGrowl('Incorrect answer', {type:'danger', allow_dismiss: false});
+                $scope.showSolutionFor[index] = false;
               }
             }
             angular.forEach($scope.set.contents, function(part, index){
