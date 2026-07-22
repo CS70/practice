@@ -125,7 +125,7 @@ following is equivalent to
   \TrueChoice\item $(\forall x \in \mathbb{X})(\exists y \in \mathbb{Y})(x\text{ is taken by }y)$
   \FalseChoice\item $(\exists x \in \mathbb{X})(\forall y \in \mathbb{Y})(x\text{ is taken by }y)$
   \FalseChoice\item $(\exists x \in \mathbb{X})(\exists y \in \mathbb{Y})(x\text{ is taken by }y)$
-  \Solution Let's break down this proposition. $(\forall x \in \mathbb{X})(\exists y \in \mathbb{Y})(x \text{ is taken by } y)$ translates to "For all photos $x$, there exists some human $y$ such that the human $y$ took the photo $x$."
+  \Solution Let's break down this proposition. $(\forall x \in \mathbb{X})(\exists y \in \mathbb{Y})(x \text{ is taken by } y)$ translates to ``For all photos $x$, there exists some human $y$ such that the human $y$ took the photo $x$."
   \end{enumerate}
 \end{Choices}
 
@@ -141,7 +141,7 @@ of them is negative''?
     \FalseChoice\item $(\forall x \in \mathbb{Z})(\forall y \in \mathbb{Z})\lnot (P(x) \lor P(y))$
     \TrueChoice\item $\lnot ((\exists x \in \mathbb{Z})(\exists y \in \mathbb{Z})(P(x) \land P(y))$
     \TrueChoice\item $(\forall x \in \mathbb{Z})\lnot ((\exists y \in \mathbb{Z})(P(x) \land P(y))$
-    \Solution a), c), and d) are all correct. Let's consider them one by one. Choice a) translates to "For all integers $x$ and $y$, either $x$ is less than 0 or $y$ is less than 0 or both are less than 0". Choice c) translates to "It is NOT true that there exist integers $x$ and $y$ such that both $x$ and $y$ are greater than or equal to 0." Choice d) translates to "For every integer $x$, there does not exist an integer $y$ such that both $x$ and $y$ are greater than or equal to 0". Note that d) can be easily derived from c) using the rules for distributing $\lnot$ across quantifiers. 
+    \Solution a), c), and d) are all correct. Let's consider them one by one. Choice a) translates to ``For all integers $x$ and $y$, either $x$ is less than 0 or $y$ is less than 0 or both are less than 0". Choice c) translates to ``It is NOT true that there exist integers $x$ and $y$ such that both $x$ and $y$ are greater than or equal to 0." Choice d) translates to ``For every integer $x$, there does not exist an integer $y$ such that both $x$ and $y$ are greater than or equal to 0". Note that d) can be easily derived from c) using the rules for distributing $\lnot$ across quantifiers. 
   \end{enumerate}
 \end{Multi}
 
@@ -206,7 +206,7 @@ Y = (A \implies \lnot B) \land (C \implies B).
     0 & 1 & 1\\
     1 & 0 & 1\\
     1 & 1 & 0
-    \end{tabular}\\ 
+    \end{tabular} 
     \\
     \begin{tabular}{ c | c || c}
     $B$ & $C$ & $C \implies B$\\
@@ -250,6 +250,67 @@ Y = (A \implies \lnot B) \land (C \implies B).
   \end{enumerate}
 \end{Choices}
 
+% equivalences 3. prop, quantifier T, quantifier F
+Determine whether the following pairs of propositions are logically equivalent.
+\item
+$P \implies (Q \implies \neg P)$ and $\neg (P \land Q)$
+\begin{enumerate}
+  \begin{Choices}
+    \TrueChoice\item Yes, they are equivalent.
+    \FalseChoice\item No, they are not equivalent.
+    \Solution These propositions are logically equivalent.
+    \begin{align*}
+      P \implies (Q \implies \neg P) &\equiv P \implies (\neg Q \lor \neg P) \\
+      &\equiv \neg P \lor (\neg Q \lor \neg P) \\
+      &\equiv \neg P \lor \neg Q \\
+      &\equiv \neg (P \land Q)
+    \end{align*}
+
+    Alternatively, we can construct a truth table for both propositions and see that they have the same truth value in each row.
+    
+    \begin{tabular}{ c | c || c | c}
+      $P$ & $Q$ & $P \implies (Q \implies \neg P)$ & $\neg (P \land Q)$\\
+      \hline
+      0 & 0 & 1 & 1 \\
+      0 & 1 & 1 & 1 \\
+      1 & 0 & 1 & 1 \\
+      1 & 1 & 0 & 0
+    \end{tabular}
+  \end{Choices}
+\end{enumerate}
+
+\item
+$\exists x (\neg P(x) \land Q(x))$ and $\neg \forall x (\neg P(x) \implies \neg Q(x))$
+\begin{Choices}
+  \begin{enumerate}
+    \TrueChoice\item Yes, they are equivalent.
+    \FalseChoice\item No, they are not equivalent.
+    \Solution These propositions are logically equivalent.
+    \begin{align*}
+      \neg \forall x (\neg P(x) \implies \neg Q(x)) &\equiv \exists x \neg (\neg P(x) \implies \neg Q(x)) \\
+      &\equiv \exists x \neg (\neg \neg P(x) \lor \neg Q(x)) \\
+      &\equiv \exists x \neg (P(x) \lor \neg Q(x)) \\
+      &\equiv \exists x (\neg P(x) \land Q(x))
+    \end{align*}
+  \end{enumerate}
+\end{Choices}
+
+\item
+$\forall x \exists y (R(x, y) \implies R(y, x))$ and $\exists y \forall x (R(x, y) \implies R(y, x))$
+\begin{Choices}
+  \begin{enumerate}
+    \FalseChoice\item Yes, they are equivalent.
+    \TrueChoice\item No, they are not equivalent.
+    \Solution These propositions are not logically equivalent.
+
+    Let our universe be the set of positive integers, and let $R(u, v)$ denote $u = 2v$.
+
+    The LHS is true: for every positive integer $x$, $y = 2x$ is a natural number that makes $R(y, x)$ true, as $(2x) = 2(x)$. This makes the implication trivially true.
+
+    The RHS is false: if such a positive integer $y$ were to exist, then $x=2y$ would make the implication false. $R(x, y)$ is true, as $(2y) = 2(y)$, but $R(y, x)$ is false, since $(y) \ne 2(2y)$, and no positive integer is equal to four times itself.
+  \end{enumerate}
+\end{Choices}
+
 The following questions have a proposition and corresponding proof. For each question: decide whether the proof is correct, and if not, identify the proof's flaw.
 
 % direct proofs ----------------------------
@@ -278,8 +339,8 @@ The following questions have a proposition and corresponding proof. For each que
 \end{enumerate}
 % http://www.mathcs.bethel.edu/~gossett/DiscreteMathWithProof/CommonErrorsInProofs.pdf
 % counterexample problems -------------------
-\item {\bf Proposition:} For any positive integer $k$, if $2^k = 0 \mod(3)$ then $8^k = 1 \mod{3}$.\\
-\textbf{Proof:} The proposition is false. Proof by counterexample: let $k = 1$, then $8^1 = 8 \neq 1 \mod{3}$.
+\item {\bf Proposition:} For any positive integer $k$, if $2^k \equiv 0 \pmod{3}$ then $8^k \equiv 1 \pmod{3}$.\\
+\textbf{Proof:} The proposition is false. Proof by counterexample: let $k = 1$, then $8^1 \equiv 8 \not \equiv 1 \pmod{3}$.
 \begin{enumerate}
 \begin{Choices}
   \FalseChoice\item The proof is correct. 
@@ -287,15 +348,15 @@ The following questions have a proposition and corresponding proof. For each que
   mentions the case of $k = 1$, while the original proposition
   contains a universal quantifier for any positive integer $k$.
   \FalseChoice\item The proof is incorrect because for any positive 
-  integer $k$, $2^k = 0 \mod{3}$ will always be false.
+  integer $k$, $2^k \equiv 0 \pmod{3}$ will always be false.
   \TrueChoice\item The proof is incorrect because the `counterexample' 
   provided is not a counterexample for the overall proposition. 
   Letting $k = 1$ does not make the implication false.
   \Solution The proof is incorrect because the provided counterexample is not actually a counterexample. The hypothesis of the proposition is always false, so the implication is always true. Thus, the statement is vacuously true and cannot be a counterexample.
 \end{Choices}
 \end{enumerate}
-\item {\bf Proposition:} For any integer $n$, if $n^2 = 0 \mod(4)$ then $n = 0 \mod{4}$.\\
-\textbf{Proof:} The proposition is false. Proof by counterexample: let $n = 6$, then $n^2 = 36 = 0 \mod{4}$, but $n \neq 0 \mod{4}$.
+\item {\bf Proposition:} For any integer $n$, if $n^2 \equiv 0 \pmod{4}$ then $n \equiv 0 \pmod{4}$.\\
+\textbf{Proof:} The proposition is false. Proof by counterexample: let $n = 6$, then $n^2 = 36 \equiv 0 \pmod{4}$, but $n \not \equiv 0 \pmod{4}$.
 \begin{enumerate}
 \begin{Choices}
   \TrueChoice\item The proof is correct. 
@@ -308,7 +369,7 @@ The following questions have a proposition and corresponding proof. For each que
 \end{enumerate}
 \item \textbf{Proposition: }Let $x$ and $y$ be two positive integers. 
   If $x \times y < 36$ then $x < 6$ or $y < 6$.\\
-  \textbf{Proof: } 
+  \textbf{Proof: }The proposition is true:
   \begin{enumerate}[(1)]
   \item Suppose $x \geq 6$ and $y \geq 6$. 
   \item Since $x \geq 6$, multiply both sides by $y$, we get
@@ -336,7 +397,7 @@ The following questions have a proposition and corresponding proof. For each que
     we first prove ``$(x \geq 6 \land y \geq 6) \implies x \times y \geq 36$''
   \end{Choices}
 \item \textbf{Proposition: } The negative of any irrational number is irrational.\\
-  \textbf{Proof: } 
+  \textbf{Proof: }The proposition is true:
   \begin{enumerate}[(1)]
   \item Assume (for the sake of contradiction) that there exists an
     irrational number $x$, such that $-x$ is rational.
